@@ -9,6 +9,16 @@ function App() {
   const [billTax, setBillTax] = useState<number>();
   const [billPeople, setPeople] = useState<number>();
 
+  function calculateTotal(){
+    if (billValue == null || billTax == null || billPeople == null) return 0;
+    return ((billValue+billTax/100*billValue)/billPeople).toFixed(2);
+  }
+
+  function taxPerPerson(){
+    if (billValue == null || billTax == null || billPeople == null) return 0;
+    return ((billTax/100*billValue)/billPeople).toFixed(2);
+  }
+
   return (
     <div className="bg-tLightGrayCyan font-SpaceMono lg:pb-32">
       <header className="py-16">
@@ -39,32 +49,32 @@ function App() {
             </label>
             <div className="grid grid-cols-2 grid-rows-3 lg:grid-cols-3 lg:grid-rows-2 gap-4">
               <button
-                onClick={() => setBillTax(0.05)}
-                className={`${billTax === 0.05 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
+                onClick={() => setBillTax(5)}
+                className={`${billTax === 5 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
               >
                 5%
               </button>
               <button
-                onClick={() => setBillTax(0.10)}
-                className={`${billTax === 0.10 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
+                onClick={() => setBillTax(10)}
+                className={`${billTax === 10 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
               >
                 10%
               </button>
               <button
-                onClick={() => setBillTax(0.15)}
-                className={`${billTax === 0.15 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
+                onClick={() => setBillTax(15)}
+                className={`${billTax === 15 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
               >
                 15%
               </button>
               <button
-                onClick={() => setBillTax(0.25)}
-                className={`${billTax === 0.25 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
+                onClick={() => setBillTax(25)}
+                className={`${billTax === 25 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
               >
                 25%
               </button>
               <button
-                onClick={() => setBillTax(0.50)}
-                className={`${billTax === 0.50 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
+                onClick={() => setBillTax(50)}
+                className={`${billTax === 50 ? "bg-tStrongCyan text-tVeryDarkCyan" : "bg-tVeryDarkCyan text-white"} p-4 rounded-lg font-bold text-2xl`}
               >
                 50%
               </button>
@@ -102,7 +112,7 @@ function App() {
               <h1 className="text-white text-xl">Tip Amount</h1>
               <h2 className="text-tGrayCyan">/ person</h2>
             </div>
-            <h1 className="text-tStrongCyan font-bold text-3xl">${billTax}</h1>
+            <h1 className="text-tStrongCyan font-bold text-3xl">${taxPerPerson()}</h1>
           </div>
           <div className="flex justify-between items-center">
             <div>
@@ -110,7 +120,7 @@ function App() {
               <h2 className="text-tGrayCyan">/ person</h2>
             </div>
             <h1 className="text-tStrongCyan font-bold text-3xl">
-              ${billValue}
+              ${calculateTotal()}
             </h1>
           </div>
           <button className="p-4 bg-tStrongCyan text-tVeryDarkCyan uppercase rounded-lg font-bold text-2xl lg:mt-auto">
