@@ -1,6 +1,8 @@
 import React from 'react';
 
 import logo from './images/logo.svg';
+import iconPerson from './images/icon-person.svg';
+import iconDolar from './images/icon-dollar.svg';
 
 function App() {
   return (
@@ -12,7 +14,10 @@ function App() {
         <section className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <label htmlFor="" className="font-bold text-xl text-tDarkGrayCyan">Bill</label>
-            <input type="number" className="bg-tLightCyan p-4"/>
+            <div className="relative">
+              <img src={iconDolar} alt="icon person" className="absolute top-0 h-2/6 mt-4 ml-4 pointer-events-none"/>
+              <input type="number" className="bg-tLightCyan px-4 py-2 w-full pl-12 text-right font-bold text-3xl text-tVeryDarkCyan"/>
+            </div>
           </div>
           <div className="flex flex-col gap-4">
             <label htmlFor="" className="font-bold text-xl text-tDarkGrayCyan">Select Tip %</label>
@@ -27,7 +32,10 @@ function App() {
           </div>
           <div className="flex flex-col gap-4">
             <label htmlFor="" className="font-bold text-xl text-tDarkGrayCyan">Number of People</label>
-            <input type="number" className="bg-tLightCyan p-4"/>
+            <div className="relative">
+              <input type="number" className="bg-tLightCyan px-4 py-2 w-full pl-12 text-right font-bold text-3xl text-tVeryDarkCyan"/>
+              <img src={iconPerson} alt="icon person" className="absolute top-0 h-2/6 mt-4 ml-4 pointer-events-none"/>
+            </div>            
           </div>
         </section>
         <section className="bg-tVeryDarkCyan p-8 rounded-3xl gap-8 flex flex-col mt-8 mb-8">
